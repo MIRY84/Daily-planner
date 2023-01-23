@@ -6,7 +6,7 @@ $("#currentDay").text(currentDay);
 
 function dispalyPlanner() {
     // Present timeblocks for standard business hours when the user scrolls down.
-    var timeblock = $("<div>").attr("class", "time-block")
+    var timeblock = $("<div>").attr("class", "time-block", "container")
     $(".container").append(timeblock)
     // changed hours to single numbers
     var hours = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
@@ -15,7 +15,8 @@ function dispalyPlanner() {
         row = $("<div>").attr("class", "row");
         timeblock.append(row)
 
-        let hour = $("<div>").attr("class", "hour");
+
+        let hour = $("<div>").attr("class", "hour col-sm-2");
         // created a if statement to go through am/pm // made sure they are numbers!parseint!
         if (parseInt(hours[i]) < 12) {
             hour.text(hours[i] + "am");
@@ -26,34 +27,32 @@ function dispalyPlanner() {
         row.append(hour);
 
         //trying to append textarea
-
         var textarea = $("<textarea>")
-        textarea.attr("class", "textarea");
+        textarea.attr("class", "textarea col-sm-8");
         row.append(textarea);
+        var saveButton = $("<button>")
+        saveButton.attr('class', 'col-sm-2 saveBtn fa fa-save', "saveBtn");
+        row.append(saveButton);
         // Color-code each timeblock based on past, present, and future when the timeblock is viewed.
         var time = moment().format("HH");
 
         if (parseInt(hours[i]) === parseInt(time)) {
-            row.attr("class", "present");
+            timeblock.attr("class", "present");
         } else if (parseInt(hours[i]) > parseInt(time)) {
-            row.attr("class", "future");
+            timeblock.attr("class", "future");
         }
         else if (parseInt(hours[i]) < parseInt(time)) {
-            row.attr("class", "past");
+            timeblock.attr("class", "past");
         }
+
+        //created a savestorage button
+        saveButton.on("click", function (e) {
+            // save event to localStorage
+            localStorage.setItem("event" + hours[i], JSON.stringify(textarea.val()));
+        })
     }
-}
+};
 
-
-//Allow a user to enter an event when they click a timeblock
-// timeblock.on('click', function () {
-var time = moment().format("HH:mm:ss");
-//console.log(time)
-
-// timeblock.append("textarea");
-//    textarea = "";
-//})
-//}
 dispalyPlanner();
 
 // Save the event in local storage when the save button is clicked in that timeblock.
