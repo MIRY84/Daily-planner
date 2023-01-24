@@ -27,22 +27,23 @@ function dispalyPlanner() {
         row.append(hour);
 
         //trying to append textarea
-        var textarea = $("<textarea>")
-        textarea.attr("class", "textarea col-sm-10");
+        var textarea = $("<textarea>").attr("class", "textarea");
+        
+        
         row.append(textarea);
         var saveButton = $("<button>")
-        saveButton.attr('class', 'col-sm-1 saveBtn fa fa-save', "saveBtn");
+        saveButton.attr('class', "col-sm-1 saveBtn fa fa-save", "saveBtn");
         row.append(saveButton);
         // Color-code each timeblock based on past, present, and future when the timeblock is viewed.
         var time = moment().format("HH");
 
         if (parseInt(hours[i]) === parseInt(time)) {
-            timeblock.attr("class", "present");
+            textarea.attr("class", "present col-sm-10");
         } else if (parseInt(hours[i]) > parseInt(time)) {
-            timeblock.attr("class", "future");
+            textarea.attr("class", "future col-sm-10");
         }
         else if (parseInt(hours[i]) < parseInt(time)) {
-            timeblock.attr("class", "past");
+            textarea.attr("class", "past col-sm-10");
         }
 
         //created a savestorage button
