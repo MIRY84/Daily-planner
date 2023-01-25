@@ -28,8 +28,8 @@ function dispalyPlanner() {
 
         //trying to append textarea
         var textarea = $("<textarea>").attr("class", "textarea");
-        
-        
+
+        // I appended text area and Button to the row
         row.append(textarea);
         var saveButton = $("<button>")
         saveButton.attr('class', "col-sm-1 saveBtn fa fa-save", "saveBtn");
@@ -37,6 +37,7 @@ function dispalyPlanner() {
         // Color-code each timeblock based on past, present, and future when the timeblock is viewed.
         var time = moment().format("HH");
 
+        // added colors to the timeblock-textareas
         if (parseInt(hours[i]) === parseInt(time)) {
             textarea.attr("class", "present col-sm-10");
         } else if (parseInt(hours[i]) > parseInt(time)) {
