@@ -32,3 +32,6 @@ The following animation demonstrates the application functionality:
 
 ## Licence
 MIT
+
+## Test
+Follow this link to test it https://miry84.github.io/Daily-planner/
